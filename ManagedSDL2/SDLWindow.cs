@@ -6,11 +6,28 @@ namespace ManagedSDL2
 {
 	public class SDLWindow : IDisposable
 	{
-		IntPtr sdlWindowPtr;
+		internal IntPtr SdlWindowPtr;
 
-		public SDLWindow(string title, int x, int y, int w, int h, bool shown = true)
+		public string Title
 		{
-			sdlWindowPtr = SDL_CreateWindow(title, x, y, w, h, shown ? SDL_WINDOW_SHOWN : SDL_WINDOW_HIDDEN);
+			get => SDL_GetWindowTitle(SdlWindowPtr);
+			set => SDL_SetWindowTitle(SdlWindowPtr, value);
+		}
+
+		public (int Width, int Height) Size
+		{
+			get
+			{
+				SDL_GetWindowSize(SdlWindowPtr, out var w, out var h);
+				return (w, h);				
+			}
+
+			set => SDL_SetWindowSize(SdlWindowPtr, value.Width, value.Height);
+		}
+
+		public SDLWindow(string title, int x, int y, int width, int height, bool shown = true)
+		{
+			SdlWindowPtr = SDL_CreateWindow(title, x, y, width, height, shown ? SDL_WINDOW_SHOWN : SDL_WINDOW_HIDDEN); 
 		}
 
 		~SDLWindow() => Dispose();
@@ -23,7 +40,7 @@ namespace ManagedSDL2
 				return;
 
 			GC.SuppressFinalize(this);
-			SDL_DestroyWindow(sdlWindowPtr);
+			SDL_DestroyWindow(SdlWindowPtr);
 
 			disposed = true;
 		}
