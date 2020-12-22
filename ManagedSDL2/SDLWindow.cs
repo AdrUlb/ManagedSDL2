@@ -4,7 +4,7 @@ using static Native.SDL.SDL_WindowFlags;
 
 namespace ManagedSDL2
 {
-	public class SDLWindow : IDisposable
+	public class SDLWindow
 	{
 		internal IntPtr SdlWindowPtr;
 
@@ -27,7 +27,8 @@ namespace ManagedSDL2
 
 		public SDLWindow(string title, int x, int y, int width, int height, bool shown = true)
 		{
-			SdlWindowPtr = SDL_CreateWindow(title, x, y, width, height, shown ? SDL_WINDOW_SHOWN : SDL_WINDOW_HIDDEN); 
+			SdlWindowPtr = SDL_CreateWindow(title, x, y, width, height, shown ? SDL_WINDOW_SHOWN : SDL_WINDOW_HIDDEN);
+			SDL_ShowWindow(SdlWindowPtr);
 		}
 
 		~SDLWindow() => Dispose();

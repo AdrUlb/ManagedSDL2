@@ -19,14 +19,13 @@ namespace ManagedSDL2
 	{
 		public delegate void QuitEventHandler();
 
-		public static int WindowposUndefined => SDL_WINDOWPOS_UNDEFINED;
-		public static int WindowposCentered => SDL_WINDOWPOS_CENTERED;
+		public static int WindowPosUndefined => SDL_WINDOWPOS_UNDEFINED;
+		public static int WindowPosCentered => SDL_WINDOWPOS_CENTERED;
 
 		public static event QuitEventHandler? Quit;
 
 		public static void Init(SDLInitFlags flags)
 		{
-			CustomDllImportResolver.Enable();
 			SDL_Init((uint)flags);
 		}
 
