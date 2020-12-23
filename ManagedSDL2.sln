@@ -3,7 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManagedSDL2", "ManagedSDL2\ManagedSDL2.csproj", "{41685EBD-C375-412C-A9C2-9DA77555B60F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ManagedSDL2", "ManagedSDL2\ManagedSDL2.csproj", "{41685EBD-C375-412C-A9C2-9DA77555B60F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ManagedSDL2.Native.Windows.X64", "ManagedSDL2.Native.Windows.X64\ManagedSDL2.Native.Windows.X64.csproj", "{B2BAF448-64B3-4289-BE3A-8F721EEE9441}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ManagedSDL2.Native.Windows.X86", "ManagedSDL2.Native.Windows.X86\ManagedSDL2.Native.Windows.X86.csproj", "{A9AFEF9A-3DD0-4F55-A843-0DFFA5EE4CB3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ManagedSDL2.Native.Linux.X86", "ManagedSDL2.Native.Linux.X86\ManagedSDL2.Native.Linux.X86.csproj", "{D8600223-9B3C-4AC7-B5B8-AABFE6899345}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ManagedSDL2.Native.Linux.X64", "ManagedSDL2.Native.Linux.X64\ManagedSDL2.Native.Linux.X64.csproj", "{E89CD222-802C-4AE9-8DC8-F723D8591E40}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +29,30 @@ Global
 		{41685EBD-C375-412C-A9C2-9DA77555B60F}.Release|x64.Build.0 = Release|x64
 		{41685EBD-C375-412C-A9C2-9DA77555B60F}.Release|x86.ActiveCfg = Release|x86
 		{41685EBD-C375-412C-A9C2-9DA77555B60F}.Release|x86.Build.0 = Release|x86
+		{B2BAF448-64B3-4289-BE3A-8F721EEE9441}.Debug|x64.ActiveCfg = Debug|x64
+		{B2BAF448-64B3-4289-BE3A-8F721EEE9441}.Debug|x64.Build.0 = Debug|x64
+		{B2BAF448-64B3-4289-BE3A-8F721EEE9441}.Debug|x86.ActiveCfg = Debug|x64
+		{B2BAF448-64B3-4289-BE3A-8F721EEE9441}.Release|x64.ActiveCfg = Release|x64
+		{B2BAF448-64B3-4289-BE3A-8F721EEE9441}.Release|x64.Build.0 = Release|x64
+		{B2BAF448-64B3-4289-BE3A-8F721EEE9441}.Release|x86.ActiveCfg = Release|x64
+		{A9AFEF9A-3DD0-4F55-A843-0DFFA5EE4CB3}.Debug|x64.ActiveCfg = Debug|x86
+		{A9AFEF9A-3DD0-4F55-A843-0DFFA5EE4CB3}.Debug|x86.ActiveCfg = Debug|x86
+		{A9AFEF9A-3DD0-4F55-A843-0DFFA5EE4CB3}.Debug|x86.Build.0 = Debug|x86
+		{A9AFEF9A-3DD0-4F55-A843-0DFFA5EE4CB3}.Release|x64.ActiveCfg = Release|x86
+		{A9AFEF9A-3DD0-4F55-A843-0DFFA5EE4CB3}.Release|x86.ActiveCfg = Release|x86
+		{A9AFEF9A-3DD0-4F55-A843-0DFFA5EE4CB3}.Release|x86.Build.0 = Release|x86
+		{D8600223-9B3C-4AC7-B5B8-AABFE6899345}.Debug|x64.ActiveCfg = Debug|x86
+		{D8600223-9B3C-4AC7-B5B8-AABFE6899345}.Debug|x86.ActiveCfg = Debug|x86
+		{D8600223-9B3C-4AC7-B5B8-AABFE6899345}.Debug|x86.Build.0 = Debug|x86
+		{D8600223-9B3C-4AC7-B5B8-AABFE6899345}.Release|x64.ActiveCfg = Release|x86
+		{D8600223-9B3C-4AC7-B5B8-AABFE6899345}.Release|x86.ActiveCfg = Release|x86
+		{D8600223-9B3C-4AC7-B5B8-AABFE6899345}.Release|x86.Build.0 = Release|x86
+		{E89CD222-802C-4AE9-8DC8-F723D8591E40}.Debug|x64.ActiveCfg = Debug|x64
+		{E89CD222-802C-4AE9-8DC8-F723D8591E40}.Debug|x64.Build.0 = Debug|x64
+		{E89CD222-802C-4AE9-8DC8-F723D8591E40}.Debug|x86.ActiveCfg = Debug|x64
+		{E89CD222-802C-4AE9-8DC8-F723D8591E40}.Release|x64.ActiveCfg = Release|x64
+		{E89CD222-802C-4AE9-8DC8-F723D8591E40}.Release|x64.Build.0 = Release|x64
+		{E89CD222-802C-4AE9-8DC8-F723D8591E40}.Release|x86.ActiveCfg = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

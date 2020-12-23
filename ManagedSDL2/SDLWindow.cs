@@ -42,6 +42,7 @@ namespace ManagedSDL2
 
 			GC.SuppressFinalize(this);
 			SDL_DestroyWindow(SdlWindowPtr);
+			Console.WriteLine("SDL window destroyed");
 
 			disposed = true;
 		}

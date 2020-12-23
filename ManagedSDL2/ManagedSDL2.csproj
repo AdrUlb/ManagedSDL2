@@ -7,4 +7,21 @@
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(Platform)'!='x86' AND '$(Platform)'!='x64'">
+		<Platform>Unsupported</Platform>
+		<Platform Condition="'$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture)'=='X64'">x64</Platform>
+		<Platform Condition="'$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture)'=='X86'">x86</Platform>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(TargetOS)'!='Windows' AND '$(Platform)'!='Linux'">
+		<TargetOS>Unsupported</TargetOS>
+		<TargetOS Condition="$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Windows)))">Windows</TargetOS>
+		<TargetOS Condition="$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Linux)))">Linux</TargetOS>
+	</PropertyGroup>
+
+	<ItemGroup Condition="'$(TargetOS)'=='Windows'">
+		<ProjectReference Condition="'$(Platform)'=='x64'" Include="..\ManagedSDL2.Native.Windows.X64\ManagedSDL2.Native.Windows.X64.csproj" />
+		<ProjectReference Condition="'$(Platform)'=='x86'" Include="..\ManagedSDL2.Native.Windows.X86\ManagedSDL2.Native.Windows.X86.csproj" />
+	</ItemGroup>
+
 </Project>
