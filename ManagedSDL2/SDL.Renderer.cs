@@ -19,6 +19,12 @@ namespace ManagedSDL2
 
 			private void SetColor(Color color) => SDL_SetRenderDrawColor(sdlRendererPtr, color.R, color.G, color.B, color.A);
 
+			public void DrawPoint(Color color, int x, int y)
+			{
+				SetColor(color);
+				SDL_RenderDrawPoint(sdlRendererPtr, x, y);
+			}
+
 			public void Clear(Color color)
 			{
 				SetColor(color);
