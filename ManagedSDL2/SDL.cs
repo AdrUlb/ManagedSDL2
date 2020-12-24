@@ -19,8 +19,11 @@ namespace ManagedSDL2
 
 		public delegate void QuitEventHandler();
 
-		public static int WindowPosUndefined => SDL_WINDOWPOS_UNDEFINED;
-		public static int WindowPosCentered => SDL_WINDOWPOS_CENTERED;
+		public static class WindowPos
+		{
+			public const int Undefined = SDL_WINDOWPOS_UNDEFINED;
+			public const int Centered = SDL_WINDOWPOS_CENTERED;
+		}
 
 		public static event QuitEventHandler? Quit;
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using static Native.SDL;
 using static Native.SDL.SDL_RendererFlags;
 
@@ -15,6 +16,18 @@ namespace ManagedSDL2
 				sdlRendererPtr = SDL_CreateRenderer(window.SdlWindowPtr, deviceIndex, accelerated ? SDL_RENDERER_ACCELERATED : SDL_RENDERER_SOFTWARE);
 				SDL_SetRenderDrawBlendMode(sdlRendererPtr, SDL_BlendMode.SDL_BLENDMODE_BLEND);
 			}
+
+			private void SetColor(Color color) => SDL_SetRenderDrawColor(sdlRendererPtr, color.R, color.G, color.B, color.A);
+
+			public void Clear(Color color)
+			{
+				SetColor(color);
+				SDL_RenderClear(sdlRendererPtr);
+			}
+
+			public void Clear() => Clear(Color.Black);
+
+			public void Present() => SDL_RenderPresent(sdlRendererPtr);
 
 			bool disposed = false;
 
