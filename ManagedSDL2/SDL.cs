@@ -2,21 +2,21 @@
 
 namespace ManagedSDL2
 {
-	public enum SDLInitFlags : uint
+	public static partial class SDL
 	{
-		Timer = SDL_INIT_TIMER,
-		Audio = SDL_INIT_AUDIO,
-		Video = SDL_INIT_VIDEO,
-		Joystick = SDL_INIT_JOYSTICK,
-		Haptic = SDL_INIT_HAPTIC,
-		GameController = SDL_INIT_GAMECONTROLLER,
-		Events = SDL_INIT_EVENTS,
-		Sensors = SDL_INIT_SENSOR,
-		Everything = SDL_INIT_EVERYTHING
-	}
+		public enum InitFlags : uint
+		{
+			Timer = SDL_INIT_TIMER,
+			Audio = SDL_INIT_AUDIO,
+			Video = SDL_INIT_VIDEO,
+			Joystick = SDL_INIT_JOYSTICK,
+			Haptic = SDL_INIT_HAPTIC,
+			GameController = SDL_INIT_GAMECONTROLLER,
+			Events = SDL_INIT_EVENTS,
+			Sensors = SDL_INIT_SENSOR,
+			Everything = SDL_INIT_EVERYTHING
+		}
 
-	public static class SDL
-	{
 		public delegate void QuitEventHandler();
 
 		public static int WindowPosUndefined => SDL_WINDOWPOS_UNDEFINED;
@@ -24,9 +24,10 @@ namespace ManagedSDL2
 
 		public static event QuitEventHandler? Quit;
 
-		public static void Init(SDLInitFlags flags)
+		public static void Init(InitFlags flags)
 		{
-			SDL_Init((uint)flags);
+			if (SDL_Init((uint)flags) != 0)
+				throw new ErrorException(SDL_GetError());
 		}
 
 		public static void ProcessEvents()
@@ -35,6 +36,30 @@ namespace ManagedSDL2
 			{
 				switch (_event.type)
 				{
+					case SDL_EventType.SDL_WINDOWEVENT:
+						{
+							var sdlWindowPtr = SDL_GetWindowFromID(_event.window.windowID);
+							Window? window = null;
+
+							foreach (var win in existingWindows)
+							{
+								if (win.SdlWindowPtr == sdlWindowPtr)
+								{
+									window = win;
+								}
+							}
+
+							if (window == null)
+								break;
+
+							switch (_event.window.windowEvent)
+							{
+								case SDL_WindowEventID.SDL_WINDOWEVENT_CLOSE:
+									window.HandleCloseRequested();
+									break;
+							}
+						}
+						break;
 					case SDL_EventType.SDL_QUIT:
 						Quit?.Invoke();
 						break;
