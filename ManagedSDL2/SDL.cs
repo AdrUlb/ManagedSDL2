@@ -1,5 +1,6 @@
 ﻿using static Native.SDL;
 using static Native.SDL.SDL_BlendMode;
+using static Native.SDL.SDL_TextureAccess;
 
 namespace ManagedSDL2
 {
@@ -26,6 +27,60 @@ namespace ManagedSDL2
 			Mod = SDL_BLENDMODE_MOD,
 			Mul = SDL_BLENDMODE_MUL,
 			Invalid = SDL_BLENDMODE_INVALID
+		}
+
+		public static class PixelFormat
+		{
+			public static uint Unknown => SDL_PIXELFORMAT_UNKNOWN;
+			public static uint Index1LSB => SDL_PIXELFORMAT_INDEX1LSB;
+			public static uint Index1MSB => SDL_PIXELFORMAT_INDEX1MSB;
+			public static uint Index4LSB => SDL_PIXELFORMAT_INDEX4LSB;
+			public static uint Index4MSB => SDL_PIXELFORMAT_INDEX4MSB;
+			public static uint Index8 => SDL_PIXELFORMAT_INDEX8;
+			public static uint RGB332 => SDL_PIXELFORMAT_RGB332;
+			public static uint XRGB444 => SDL_PIXELFORMAT_XRGB444;
+			public static uint RGB444 => SDL_PIXELFORMAT_RGB444;
+			public static uint XBGR444 => SDL_PIXELFORMAT_XBGR444;
+			public static uint BGR444 => SDL_PIXELFORMAT_BGR444;
+			public static uint XRGB1555 => SDL_PIXELFORMAT_XRGB1555;
+			public static uint RGB555 => SDL_PIXELFORMAT_RGB555;
+			public static uint XBGR1555 => SDL_PIXELFORMAT_XBGR1555;
+			public static uint BGR555 => SDL_PIXELFORMAT_BGR555;
+			public static uint ARGB4444 => SDL_PIXELFORMAT_ARGB4444;
+			public static uint RGBA4444 => SDL_PIXELFORMAT_RGBA4444;
+			public static uint ABGR4444 => SDL_PIXELFORMAT_ABGR4444;
+			public static uint BGRA4444 => SDL_PIXELFORMAT_BGRA4444;
+			public static uint ARGB1555 => SDL_PIXELFORMAT_ARGB1555;
+			public static uint RGBA5551 => SDL_PIXELFORMAT_RGBA5551;
+			public static uint ABGR1555 => SDL_PIXELFORMAT_ABGR1555;
+			public static uint BGRA5551 => SDL_PIXELFORMAT_BGRA5551;
+			public static uint RGB565 => SDL_PIXELFORMAT_RGB565;
+			public static uint BGR565 => SDL_PIXELFORMAT_BGR565;
+			public static uint RGB24 => SDL_PIXELFORMAT_RGB24;
+			public static uint BGR24 => SDL_PIXELFORMAT_BGR24;
+			public static uint XRGB888 => SDL_PIXELFORMAT_XRGB888;
+			public static uint RGB888 => SDL_PIXELFORMAT_RGB888;
+			public static uint RGBX8888 => SDL_PIXELFORMAT_RGBX8888;
+			public static uint XBGR888 => SDL_PIXELFORMAT_XBGR888;
+			public static uint BGR888 => SDL_PIXELFORMAT_BGR888;
+			public static uint BGRX8888 => SDL_PIXELFORMAT_BGRX8888;
+			public static uint ARGB8888 => SDL_PIXELFORMAT_ARGB8888;
+			public static uint RGBA8888 => SDL_PIXELFORMAT_RGBA8888;
+			public static uint ABGR8888 => SDL_PIXELFORMAT_ABGR8888;
+			public static uint BGRA8888 => SDL_PIXELFORMAT_BGRA8888;
+			public static uint ARGB2101010 => SDL_PIXELFORMAT_ARGB2101010;
+			public static uint YV12 => SDL_PIXELFORMAT_YV12;
+			public static uint IYUV => SDL_PIXELFORMAT_IYUV;
+			public static uint YUY2 => SDL_PIXELFORMAT_YUY2;
+			public static uint UYVY => SDL_PIXELFORMAT_UYVY;
+			public static uint YVYU => SDL_PIXELFORMAT_YVYU;
+		}
+
+		public enum TextureAccess
+		{
+			Static = SDL_TEXTUREACCESS_STATIC,
+			Streaming = SDL_TEXTUREACCESS_STREAMING,
+			Target = SDL_TEXTUREACCESS_TARGET
 		}
 
 		public delegate void QuitEventHandler();

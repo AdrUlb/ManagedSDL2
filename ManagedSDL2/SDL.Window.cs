@@ -67,8 +67,6 @@ namespace ManagedSDL2
 
 			public void Hide() => SDL_HideWindow(SdlWindowPtr);
 
-			public Surface GetSurface() => new Surface(SDL_GetWindowSurface(SdlWindowPtr));
-
 			bool disposed = false;
 
 			public void Dispose()
