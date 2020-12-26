@@ -56,6 +56,15 @@ namespace ManagedSDL2
 					_ = SDL_RenderCopy(SdlRendererPtr, texture.SdlTexturePtr, IntPtr.Zero, IntPtr.Zero);
 			}
 
+			public void FillRect(Color color, Rectangle rect)
+			{
+				SetColor(color);
+
+				var sdlRect = Util.CreateSDLRect(rect);
+
+				_ = SDL_RenderFillRect(SdlRendererPtr, ref sdlRect);
+			}
+
 			public void Clear(Color color)
 			{
 				SetColor(color);
