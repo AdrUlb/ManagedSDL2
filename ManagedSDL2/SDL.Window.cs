@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using static Native.SDL;
 using static Native.SDL.SDL_WindowFlags;
 
@@ -8,9 +7,9 @@ namespace ManagedSDL2
 {
 	public static partial class SDL
 	{
-		static List<Window> existingWindows = new List<Window>();
+		static readonly List<Window> existingWindows = new List<Window>();
 
-		public class Window
+		public class Window : IDisposable
 		{
 			internal IntPtr SdlWindowPtr;
 
@@ -68,6 +67,8 @@ namespace ManagedSDL2
 
 			public void Hide() => SDL_HideWindow(SdlWindowPtr);
 
+			public Surface GetSurface() => new Surface(SDL_GetWindowSurface(SdlWindowPtr));
+
 			bool disposed = false;
 
 			public void Dispose()
@@ -75,6 +76,7 @@ namespace ManagedSDL2
 				if (disposed)
 					return;
 
+				GC.SuppressFinalize(this);
 				existingWindows.Remove(this);
 				SDL_DestroyWindow(SdlWindowPtr);
 

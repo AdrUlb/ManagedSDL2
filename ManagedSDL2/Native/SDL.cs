@@ -1,5 +1,5 @@
 ﻿#nullable disable
-#pragma warning disable CS0649
+#pragma warning disable IDE0017, IDE0044, IDE0059
 
 #region License
 /* SDL2# - C# Wrapper for SDL2

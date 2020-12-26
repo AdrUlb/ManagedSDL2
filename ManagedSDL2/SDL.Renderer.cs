@@ -11,13 +11,24 @@ namespace ManagedSDL2
 		{
 			readonly IntPtr sdlRendererPtr;
 
+			public (float X, float Y) Scale
+			{
+				get
+				{
+					SDL_RenderGetScale(sdlRendererPtr, out var scaleX, out var scaleY);
+					return (scaleX, scaleY);
+				}
+
+				set => _ = SDL_RenderSetScale(sdlRendererPtr, value.X, value.Y);
+			}
 			public Renderer(Window window, int deviceIndex = -1, bool accelerated = true)
 			{
 				sdlRendererPtr = SDL_CreateRenderer(window.SdlWindowPtr, deviceIndex, accelerated ? SDL_RENDERER_ACCELERATED : SDL_RENDERER_SOFTWARE);
-				_ = SDL_SetRenderDrawBlendMode(sdlRendererPtr, SDL_BlendMode.SDL_BLENDMODE_BLEND);
 			}
 
 			private void SetColor(Color color) => _ = SDL_SetRenderDrawColor(sdlRendererPtr, color.R, color.G, color.B, color.A);
+
+			public void SetDrawBlendMode(BlendMode mode) => _ = SDL_SetRenderDrawBlendMode(sdlRendererPtr, (SDL_BlendMode)mode);
 
 			public void DrawPoint(Color color, int x, int y)
 			{

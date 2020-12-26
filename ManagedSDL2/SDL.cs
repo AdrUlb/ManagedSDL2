@@ -1,4 +1,5 @@
 ﻿using static Native.SDL;
+using static Native.SDL.SDL_BlendMode;
 
 namespace ManagedSDL2
 {
@@ -15,6 +16,16 @@ namespace ManagedSDL2
 			Events = SDL_INIT_EVENTS,
 			Sensors = SDL_INIT_SENSOR,
 			Everything = SDL_INIT_EVERYTHING
+		}
+
+		public enum BlendMode
+		{
+			None = SDL_BLENDMODE_NONE,
+			Blend = SDL_BLENDMODE_BLEND,
+			Add = SDL_BLENDMODE_ADD,
+			Mod = SDL_BLENDMODE_MOD,
+			Mul = SDL_BLENDMODE_MUL,
+			Invalid = SDL_BLENDMODE_INVALID
 		}
 
 		public delegate void QuitEventHandler();
