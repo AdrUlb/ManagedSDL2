@@ -41,6 +41,14 @@ namespace ManagedSDL2
 				set => SDL_SetWindowSize(SdlWindowPtr, value.Width, value.Height);
 			}
 
+			public uint WindowFlags => SDL_GetWindowFlags(SdlWindowPtr);
+
+			public bool Resizable
+			{
+				get => (WindowFlags & (uint)SDL_WindowFlags.SDL_WINDOW_RESIZABLE) > 0;
+				set => SDL_SetWindowResizable(SdlWindowPtr, value ? SDL_bool.SDL_TRUE : SDL_bool.SDL_FALSE);
+			}
+
 			public delegate void CloseRequestedEventHandler();
 
 			public event CloseRequestedEventHandler? CloseRequested;
