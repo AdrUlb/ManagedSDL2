@@ -10,9 +10,33 @@ namespace ManagedSDL2
 		{
 			internal readonly IntPtr SdlTexturePtr;
 
+			public int Width { get; private set; }
+			public int Height { get; private set; }
+			public uint PixelFormat { get; private set; }
+			public TextureAccess Access { get; private set; }
+
 			public Texture(Renderer renderer, uint pixelFormat, TextureAccess textureAccess, int width, int height)
 			{
 				SdlTexturePtr = SDL_CreateTexture(renderer.SdlRendererPtr, pixelFormat, (int)textureAccess, width, height);
+
+				Query();
+			}
+
+			internal Texture(IntPtr sdlTexturePtr)
+			{
+				SdlTexturePtr = sdlTexturePtr;
+
+				Query();
+			}
+
+			private void Query()
+			{
+				SDL_QueryTexture(SdlTexturePtr, out uint format, out var access, out var w, out var h);
+
+				Width = w;
+				Height = h;
+				PixelFormat = format;
+				Access = (TextureAccess)access;
 			}
 
 			public (IntPtr pixelsPtr, int pitch) Lock(Rectangle? rect = null)
