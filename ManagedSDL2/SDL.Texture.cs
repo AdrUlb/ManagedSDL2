@@ -15,6 +15,8 @@ namespace ManagedSDL2
 			public uint PixelFormat { get; private set; }
 			public TextureAccess Access { get; private set; }
 
+			public bool Locked { get; private set; } = false;
+
 			public Texture(Renderer renderer, uint pixelFormat, TextureAccess textureAccess, int width, int height)
 			{
 				SdlTexturePtr = SDL_CreateTexture(renderer.SdlRendererPtr, pixelFormat, (int)textureAccess, width, height);
@@ -41,6 +43,11 @@ namespace ManagedSDL2
 
 			public (IntPtr pixelsPtr, int pitch) Lock(Rectangle? rect = null)
 			{
+				if (Locked)
+					throw new InvalidOperationException("Texture already locked");
+
+				Locked = true;
+
 				if (rect == null)
 				{
 					_ = SDL_LockTexture(SdlTexturePtr, IntPtr.Zero, out var pixels, out var pitch);
@@ -55,7 +62,15 @@ namespace ManagedSDL2
 				}
 			}
 
-			public void Unlock() => SDL_UnlockTexture(SdlTexturePtr);
+			public void Unlock()
+			{
+				if (!Locked)
+					throw new Exception("Texture was not locked");
+
+				SDL_UnlockTexture(SdlTexturePtr);
+				
+				Locked = false;
+			}
 
 			bool disposed = false;
 
